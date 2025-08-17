@@ -1,14 +1,18 @@
-# premier_league_streamlit_app.py
 import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.ticker import MaxNLocator
+import os
 
 # ============ USER SETTINGS ============
-CSV_PATH_MATCHES = r"C:/Users/htouray/Downloads/E0.csv"   # Update if needed
-CSV_PATH_PLAYERS = r"C:/Users/htouray/Downloads/epl_player_stats_24_25.csv"         # Player stats dataset
+CSV_PATH_MATCHES = "https://raw.githubusercontent.com/HamzaTouray/Man_U_premier-league-analysis/main/E0.csv"
+CSV_PATH_PLAYERS = "https://raw.githubusercontent.com/HamzaTouray/Man_U_premier-league-analysis/main/epl_player_stats_24_25.csv"
+FOCUS_TEAM = "Man United"        # Team to benchmark
+ROLLING_WINDOW = 5               # For trend plots
+
+         # Player stats dataset
 FOCUS_TEAM = "Man United"                                # Team to benchmark
 ROLLING_WINDOW = 5                                       # For trend plots
 # =======================================
@@ -338,7 +342,7 @@ Based on the addition of Bryan Mbeumo, Matheus Cunha, and Benjamin Šeško, Manc
 - Increase their points per game from {current_ppg:.2f} to {projected_ppg:.2f}
 - Finish with approximately {projected_points:.0f} points
 
-This improvement would likely result in a {predicted_pos} place finish, representing a significant improvement from their current position.
+This improvement would likely result in a {predicted_pos} place finish, representing a significant improvement from previous season.
 """)
 
 # ---------- Liverpool Comparison ----------
@@ -382,31 +386,6 @@ if liverpool_row is not None:
        - This remains a key area for improvement
     """)
 
-    st.subheader("Strategies to Catch Liverpool")
-
-    st.write("""
-    **1. Attacking Improvements:**
-    - Utilize the new forwards' strengths in a flexible 4-2-3-1 system
-    - Focus on quick transitions and counter-attacking with Mbeumo and Cunha's pace
-    - Develop set-piece routines to maximize Šeško's aerial ability
-    - Increase shot quality by creating more chances in the box
-
-    **2. Defensive Improvements:**
-    - Implement a more aggressive pressing system to win the ball higher up the pitch
-    - Improve defensive organization, especially against counter-attacks
-    - Strengthen the full-back positions to provide better defensive cover
-    - Consider adding a ball-playing defensive midfielder to improve defensive stability
-
-    **3. Midfield Balance:**
-    - Upgrade the midfield pivot to provide better control and defensive cover
-    - Improve the connection between midfield and attack to create more chances
-    - Develop a more possession-based style to reduce defensive vulnerability
-
-    **4. Squad Depth:**
-    - Ensure adequate cover in all positions to maintain performance throughout the season
-    - Develop young players to provide competition and depth
-    - Manage player fitness and rotation to prevent injuries and fatigue
-    """)
 
     st.subheader("Projected Impact vs Liverpool")
 
@@ -469,20 +448,7 @@ st.write(f"""
 st.header("Tactical Analysis")
 
 st.write("""
-### Potential Formation and Tactics:
 
-With the addition of Mbeumo, Cunha, and Šeško, Manchester United could adopt a more flexible and attacking 4-2-3-1 formation:
- CopyŠeško
-Mbeumo   Bruno Fernandes   Cunha
-McTominay    Casemiro
-Shaw   Martínez   Varane   Dalot
-Onana
- Copy**Key Tactical Points:**
-1. **Front Four Rotation**: The new signings provide options for rotation and tactical flexibility in the front four positions
-2. **Pressing Intensity**: All three new forwards are capable of high pressing, which could improve United's defensive work from the front
-3. **Transition Play**: Mbeumo and Cunha's pace and dribbling ability will enhance United's counter-attacking threat
-4. **Set Pieces**: Šeško's aerial ability adds a new dimension to United's set-piece attacking options
-5. **Creative Options**: The additional creativity from Mbeumo and Cunha could help unlock defenses and create more chances
 
 ### Areas for Improvement:
 1. **Defensive Stability**: While the attack is strengthened, United may need to address defensive vulnerabilities to challenge for the title
@@ -503,25 +469,6 @@ st.write("""
 5. **Focus on Wide Play**: Use Mbeumo and Cunha's pace on the wings to create crossing opportunities
 """)
 
-st.subheader("Transfer Recommendations")
-st.write("""
-1. **Defensive Midfielder**: A mobile, ball-playing defensive midfielder to partner Casemiro and improve midfield control
-   - Target: A player like João Neves or Khephren Thuram who can provide both defensive solidity and progressive passing
-
-2. **Center-Back**: A left-footed center-back to provide balance to the defense
-   - Target: A player like Jean-Clair Todibo or Gonçalo Inácio who can complement Varane and Martínez
-
-3. **Right-Back**: Competition and cover for Dalot to improve defensive solidity
-   - Target: A player like Jeremie Frimpong or Pedro Porro who can provide both defensive cover and attacking threat
-""")
-
-st.subheader("Development Focus")
-st.write("""
-1. **Youth Integration**: Provide opportunities for young players like Amad Diallo and Alejandro Garnacho to develop alongside the new signings
-2. **Tactical Flexibility**: Develop the squad's ability to play in multiple formations (4-2-3-1, 4-3-3, 3-5-2)
-3. **Physical Conditioning**: Ensure the new forwards are adapted to the physical demands of the Premier League
-4. **Team Cohesion**: Focus on building understanding between the new attacking players and the existing squad
-""")
 
 # ---------- Comparison with Top Four ----------
 st.header("Comparison with Top Four")
