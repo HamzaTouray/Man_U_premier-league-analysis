@@ -3,4 +3,5 @@ pandas
 numpy
 matplotlib
 seaborn
-
+CSV_PATH_MATCHES = r"C:/Users/htouray/Downloads/E0.csv"  
+CSV_PATH_PLAYERS = r"C:/Users/htouray/Downloads/epl_player_stats_24_25.csv"
